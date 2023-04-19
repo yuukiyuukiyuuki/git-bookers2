@@ -1,7 +1,9 @@
-<h3>User info</h3>
-<div>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md3">
+     <h3>User info</h3>
   <%=  image_tag @user.get_profile_image(100,100) %>
-<table class="table">  
+<table class="table">
   <tbody>
    <tr>
     <th>name</th><th><%= @user.name %></th>
@@ -11,14 +13,34 @@
     </tr>
   </tbody>
 </table>
- </div>
-</div>
 <p><%= link_to 'プロフィール編集', edit_user_path %></p>
 <h2>New book</h2>
 <%= form_with model: @book do |f| %>
-  <h4>Title</h4>
+  <h6>Title</h6>
     <%= f.text_field :title %>
-  <h4>Opinion</h4>
+  <h6>Opinion</h6>
     <%= f.text_area :body %>
   <br><%= f.submit 'Create Book' %>
 <% end %>
+</div>
+<div class="col-md3">
+  <h3>Books</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+ <tbody>
+  <% @books.each do |book| %>
+   <tr>
+     <td><%=book.title %></td>
+     <td><%=book.body %></td>
+   </tr>
+ <% end %>
+   </tbody>
+ </table>
+</div>
+</div>
+</div>

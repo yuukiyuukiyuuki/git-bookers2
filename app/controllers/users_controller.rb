@@ -13,12 +13,12 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
-
   end
 
-  def book_params
-    params.require(:book).permit(:image)
+  def index
+    @users=User.all
   end
+
 private
 
   def user_params
