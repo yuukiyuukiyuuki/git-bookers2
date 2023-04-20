@@ -1,11 +1,42 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md3">
+     <h3>User info</h3>
+  <%=  image_tag @user.get_profile_image(100,100) %>
 <table class="table">
- <thead>
-   <h3>Book detail</h3>
-   <thead>
-     <tr>
-      <th><%=@books.title %></th>
-      <th><%=@books.body %></th>
-     </tr>
-   </thead>
- </thead>
+  <tbody>
+   <tr>
+    <th>name</th><th><%= @user.name %></th>
+   </tr>
+   <tr>
+    <th>introduction</th><th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
 </table>
+<p><%= link_to 'プロフィール編集', edit_user_path %></p>
+<h2>New book</h2>
+<%= form_with model: @book do |f| %>
+  <h6>Title</h6>
+    <%= f.text_field :title %>
+  <h6>Opinion</h6>
+    <%= f.text_area :body %>
+  <br><%= f.submit 'Create Book' %>
+<% end %>
+</div>
+<div class="col-md3">
+  <h3>Book detail</h3>
+  <table class="table">
+    <% @books.each do |book| %>
+   <tr>
+     <td><%=image_tag @user.profile_image %>
+     <br><%= link_to @user.name,user_path %>
+     </td>
+      <td><%= link_to book.title,book_path(@user) %></td>
+     <td><%=book.body %></td>
+     <td><%= link_to 'Edit',edit_book_path%></td>
+   </tr>
+   <% end %>
+  </table>
+</div>
+</div>
+</div>

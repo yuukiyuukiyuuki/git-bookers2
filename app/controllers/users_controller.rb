@@ -3,10 +3,12 @@ class UsersController < ApplicationController
     @book=Book.new
     @user=User.find(params[:id])
     @books=@user.books
+    @users=current_user
   end
 
   def edit
     @user=User.find(params[:id])
+
   end
 
   def update
@@ -17,6 +19,15 @@ class UsersController < ApplicationController
 
   def index
     @users=User.all
+    @user=current_user
+  end
+
+  def get_profile_image
+    if image.attached?
+      image
+    else
+      'no_image.jpg'
+    end
   end
 
 private

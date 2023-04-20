@@ -12,10 +12,25 @@ class BooksController < ApplicationController
 
   def index
     @books =Book.all
+    @user=current_user
   end
 
   def show
-    @books=Book.find(params[:id])
+    @book=Book.new
+    @user=User.find(params[:id])
+    @books=@user.books
+  end
+  
+  def edit
+    @user=current_user
+  end
+
+  def get_profile_image
+    if image.attached?
+      image
+    else
+      'no_image.jpg'
+    end
   end
 
 private
