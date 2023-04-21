@@ -22,6 +22,14 @@ class UsersController < ApplicationController
     @user=current_user
   end
 
+  def create
+    @user=User.new(user_params)
+   if @user.save
+    flash[:notice] ="Signed in successfully."
+    redirect_to user_path(user.id)
+   end
+  end
+
   def get_profile_image
     if image.attached?
       image

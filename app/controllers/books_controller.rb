@@ -7,6 +7,7 @@ class BooksController < ApplicationController
     @books = Book.new(book_params)
     @books.user_id = current_user.id
     @books.save
+    flash[:notice] = "投稿が成功しました"
     redirect_to books_path
   end
 
@@ -20,9 +21,22 @@ class BooksController < ApplicationController
     @user=User.find(params[:id])
     @books=@user.books
   end
-  
+
   def edit
+    @book=@user.books
     @user=current_user
+  end
+
+  def update
+   @book=Book.find(params[:id])
+   @book.update(book_params)
+   redirect_to book_path(@book)
+  end
+
+  def destroy
+    @book=Book.find(params[:id])
+    @book.destroy
+    redirect_to '/books'
   end
 
   def get_profile_image
