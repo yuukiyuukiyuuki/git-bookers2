@@ -8,13 +8,21 @@ class UsersController < ApplicationController
 
   def edit
     @user=User.find(params[:id])
-
+   unless user.id == current_user.id
+    redirect_to book_path
+   end
   end
 
   def update
     @user=User.find(params[:id])
     @user.update(user_params)
+    @user=User.new(user_params)
+    if@user.save
+    flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def index
@@ -24,8 +32,12 @@ class UsersController < ApplicationController
 
   def create
     @user=User.new(user_params)
-   if @user.save
+   if @user_log_in.save
     flash[:notice] ="Signed in successfully."
+    redirect_to user_path(user.id)
+   end
+   if @user_sign_in.save
+    flash[:notice] ="Welcome! You have signed up successfully."
     redirect_to user_path(user.id)
    end
   end
