@@ -13,7 +13,9 @@
     </tr>
   </tbody>
 </table>
-<p><%= link_to 'プロフィール編集', edit_user_path(user) %></p>
+<p><%= link_to edit_user_path(user) do %></p>
+<i class="fas fa-user-cog"></i>
+<% end %>
 <h2>New book</h2>
 <%= form_with model: book do |f| %>
   <h6>Title</h6>
