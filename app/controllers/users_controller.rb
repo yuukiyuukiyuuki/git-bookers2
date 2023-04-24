@@ -8,9 +8,8 @@ class UsersController < ApplicationController
 
   def edit
     @user=User.find(params[:id])
-   unless
-     @user.id == current_user.id
-    redirect_to book_path
+   if @user.id != current_user.id
+    redirect_to user_path(current_user.id)
    end
   end
 
@@ -21,13 +20,14 @@ class UsersController < ApplicationController
     flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user)
     else
-      render :edit
+    render :edit
     end
   end
 
   def index
     @users=User.all
     @user=current_user
+    @book=Book.new
   end
 
   def create
