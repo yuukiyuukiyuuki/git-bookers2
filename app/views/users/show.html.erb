@@ -3,7 +3,7 @@
 </div>
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md3">
+    <div class="col-md-3">
      <h3>User info</h3>
   <%=  image_tag @user.get_profile_image(100,100) %>
 <table class="table">
@@ -24,13 +24,13 @@
 <h2>New book</h2>
 <%= form_with model: @book do |f| %>
   <h6>Title</h6>
-    <%= f.text_field :title,class: "form-control book_title" %>
+    <%= f.text_field :title,class: "form-control book_title"%>
   <h6>Opinion</h6>
-    <%= f.text_area :body %>
+    <%= f.text_area :body,class: "form-control book_body" %>
   <br><%= f.submit 'Create Book' %>
 <% end %>
 </div>
-<div class="col-md3">
+<div class="col-md-8 offset-md-1">
   <h3>Books</h3>
 <table class="table">
   <thead>

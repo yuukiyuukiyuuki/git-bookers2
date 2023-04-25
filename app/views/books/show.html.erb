@@ -1,9 +1,9 @@
 <div>
   <%= flash[:notice] %>
 </div>
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
-    <div class="col-md3">
+    <div class="col-md-3">
      <h3>User info</h3>
   <%=  image_tag @user.get_profile_image(100,100) %>
 <table class="table">
@@ -16,9 +16,11 @@
     </tr>
   </tbody>
 </table>
-<p><%= link_to edit_user_path(@user.id) do %></p>
+<div class="row">
+<p><%= link_to edit_user_path(@user.id),class:"btn btn-outline-secondary btn-block" do%></p>
 <i class="fas fa-user-cog"></i>
 <% end %>
+</div>
 <h2>New book</h2>
 <%= form_with model: @newbook do |f| %>
   <h6>Title</h6>
@@ -27,8 +29,8 @@
     <%= f.text_area :body %>
   <br><%= f.submit 'Create Book' %>
 <% end %>
-</div>
-<div class="col-md3">
+</div>s
+<div class="col-md-8 offset-md-1">
   <h3>Book detail</h3>
   <table class="table">
    <tbody>
